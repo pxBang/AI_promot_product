@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIKEFORCE — Three.js FPS</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div id="crosshair">
+      <div class="ch-line ch-top"></div>
+      <div class="ch-line ch-bottom"></div>
+      <div class="ch-line ch-left"></div>
+      <div class="ch-line ch-right"></div>
+      <div class="ch-dot"></div>
+    </div>
+    <div id="hitmarker" class="hidden">✕</div>
+
+    <div id="health-bar"><div id="health-fill"></div><span id="health-text">100</span></div>
+    <div id="armor-bar"><div id="armor-fill"></div><span id="armor-text">0</span></div>
+
+    <div id="ammo-panel">
+      <span id="weapon-name">M4 CARBINE</span>
+      <span id="ammo-count">30 / 90</span>
+    </div>
+
+    <div id="inventory">
+      <div class="inv-slot" data-slot="0"><span class="inv-key">1</span><span class="inv-name"></span></div>
+      <div class="inv-slot" data-slot="1"><span class="inv-key">2</span><span class="inv-name"></span></div>
+      <div class="inv-slot" data-slot="2"><span class="inv-key">3</span><span class="inv-name"></span></div>
+      <div class="inv-slot" data-slot="3"><span class="inv-key">4</span><span class="inv-name"></span></div>
+      <div class="inv-slot" data-slot="4"><span class="inv-key">G</span><span class="inv-name">GRENADE</span></div>
+    </div>
+
+    <div id="objective-banner"></div>
+    <div id="kill-feed"></div>
+
+    <div id="team-score">
+      <div class="ts-team blue"><span id="ts-blue">ALPHA</span><span id="ts-blue-score">0</span></div>
+      <div id="ts-timer">05:00</div>
+      <div class="ts-team red"><span id="ts-red">BRAVO</span><span id="ts-red-score">0</span></div>
+    </div>
+
+    <div id="minimap"><canvas id="minimap-canvas" width="160" height="160"></canvas></div>
+    <div id="compass">N</div>
+
+    <div id="damage-overlay"></div>
+    <div id="low-health-vignette"></div>
+
+    <div id="center-message"></div>
+    <div id="respawn-panel" class="hidden">
+      <div id="respawn-title">YOU WERE KILLED</div>
+      <div id="respawn-killer"></div>
+      <div id="respawn-count">3</div>
+      <div id="killcam-view"></div>
+    </div>
+  </div>
+
+  <!-- Menus -->
+  <div id="menu" class="screen">
+    <div class="menu-inner">
+      <h1 class="title">STRIKE<span>FORCE</span></h1>
+      <p class="subtitle">A Three.js First-Person Shooter</p>
+      <div class="menu-block">
+        <label>GAME MODE</label>
+        <div class="mode-buttons" id="mode-select">
+          <button data-mode="tdm" class="active">Team Deathmatch</button>
+          <button data-mode="dom">Domination</button>
+          <button data-mode="ffa">Free For All</button>
+        </div>
+      </div>
+      <div class="menu-block">
+        <label>LEVEL</label>
+        <div class="mode-buttons" id="level-select">
+          <button data-level="0" class="active">Warehouse</button>
+          <button data-level="1">Desert Outpost</button>
+          <button data-level="2">Arctic Base</button>
+          <button data-level="3">Urban Rooftops</button>
+        </div>
+      </div>
+      <button id="start-btn" class="primary">DEPLOY</button>
+      <div class="controls-hint">
+        <div>WASD — Move</div><div>Mouse — Aim</div><div>LMB — Fire</div>
+        <div>RMB — Aim Down Sights</div><div>R — Reload</div><div>1-4 — Weapons</div>
+        <div>G — Grenade</div><div>Shift — Sprint</div><div>Ctrl — Crouch</div>
+        <div>Space — Jump</div><div>Tab — Scoreboard</div><div>Esc — Pause</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="pause-menu" class="screen hidden">
+    <div class="menu-inner">
+      <h2>PAUSED</h2>
+      <button id="resume-btn" class="primary">RESUME</button>
+      <button id="quit-btn">QUIT TO MENU</button>
+    </div>
+  </div>
+
+  <div id="end-screen" class="screen hidden">
+    <div class="menu-inner">
+      <h2 id="end-title">VICTORY</h2>
+      <div id="end-stats"></div>
+      <div id="end-highlights" class="highlights"></div>
+      <button id="play-again-btn" class="primary">PLAY AGAIN</button>
+      <button id="end-quit-btn">QUIT TO MENU</button>
+    </div>
+  </div>
+
+  <div id="scoreboard" class="hidden">
+    <div class="sb-inner">
+      <h3>SCOREBOARD</h3>
+      <table id="sb-table"><thead><tr><th>Player</th><th>K</th><th>D</th><th>A</th><th>Score</th></tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
