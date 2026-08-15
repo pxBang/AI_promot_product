@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apex Velocity — 3D Racing</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div id="game-root">
+    <canvas id="scene"></canvas>
+
+    <!-- In-game HUD -->
+    <div id="hud" class="hidden"></div>
+
+    <!-- Menu overlay -->
+    <div id="menu" class="overlay">
+      <div class="menu-card">
+        <h1 class="logo">APEX <span>VELOCITY</span></h1>
+        <p class="tagline">Realistic physics · Custom cars · Day &amp; night racing</p>
+
+        <div class="menu-grid">
+          <button class="menu-btn" data-action="quick">Quick Race</button>
+          <button class="menu-btn" data-action="time-trial">Time Trial</button>
+          <button class="menu-btn" data-action="championship">Championship</button>
+          <button class="menu-btn" data-action="elimination">Elimination</button>
+          <button class="menu-btn" data-action="splitscreen">Split-Screen (2P)</button>
+          <button class="menu-btn" data-action="garage">Garage</button>
+        </div>
+
+        <div id="menu-options" class="menu-options">
+          <label>Track
+            <select id="sel-track"></select>
+          </label>
+          <label>Laps
+            <select id="sel-laps">
+              <option value="1">1</option>
+              <option value="3" selected>3</option>
+              <option value="5">5</option>
+              <option value="8">8</option>
+            </select>
+          </label>
+          <label>Difficulty
+            <select id="sel-difficulty">
+              <option value="0">Rookie</option>
+              <option value="1" selected>Amateur</option>
+              <option value="2">Pro</option>
+              <option value="3">Legend</option>
+            </select>
+          </label>
+          <label>AI Opponents
+            <select id="sel-ai">
+              <option value="1">1</option>
+              <option value="3">3</option>
+              <option value="5" selected>5</option>
+              <option value="7">7</option>
+            </select>
+          </label>
+          <label>Weather
+            <select id="sel-weather">
+              <option value="clear">Clear</option>
+              <option value="rain">Rain</option>
+              <option value="snow">Snow</option>
+              <option value="fog">Fog</option>
+              <option value="dynamic">Dynamic</option>
+            </select>
+          </label>
+          <label>Time of day
+            <select id="sel-time">
+              <option value="day">Day</option>
+              <option value="dusk">Dusk</option>
+              <option value="night">Night</option>
+              <option value="cycle">Day / Night Cycle</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="controls-note">
+          <p><b>P1:</b> WASD drive · Space handbrake · C camera · R reset · Esc menu</p>
+          <p><b>P2:</b> Arrows drive · / handbrake</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Garage -->
+    <div id="garage" class="overlay hidden">
+      <div class="menu-card wide">
+        <h2>GARAGE</h2>
+        <div id="garage-canvas-wrap"><canvas id="garage-canvas"></canvas></div>
+        <div class="garage-controls">
+          <div class="swatches" id="paint-swatches"></div>
+          <div class="sliders">
+            <label>Body hue <input type="range" id="paint-hue" min="0" max="360" value="210" /></label>
+            <label>Accent hue <input type="range" id="accent-hue" min="0" max="360" value="30" /></label>
+          </div>
+          <div class="upgrades" id="upgrades"></div>
+        </div>
+        <button class="menu-btn" data-action="back">Back</button>
+      </div>
+    </div>
+
+    <!-- Race results -->
+    <div id="results" class="overlay hidden">
+      <div class="menu-card">
+        <h2 id="results-title">RACE RESULTS</h2>
+        <ol id="results-list" class="results-list"></ol>
+        <div id="championship-standings" class="hidden"></div>
+        <div class="menu-grid">
+          <button class="menu-btn" data-action="restart">Restart Race</button>
+          <button class="menu-btn" data-action="replay">Watch Replay</button>
+          <button class="menu-btn" data-action="menu">Main Menu</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Replay controls -->
+    <div id="replay-bar" class="hidden">
+      <button data-action="replay-play">▶</button>
+      <button data-action="replay-cam">Cam: Chase</button>
+      <input type="range" id="replay-scrub" min="0" max="1000" value="0" />
+      <button data-action="replay-exit">Exit Replay</button>
+    </div>
+
+    <div id="toast" class="hidden"></div>
+    <div id="countdown" class="hidden"></div>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

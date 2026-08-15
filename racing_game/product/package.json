@@ -1,0 +1,9 @@
+{
+  "name": "apex-velocity-3d-racing",
+  "version": "1.0.0",
+  "description": "Apex Velocity — a 3D racing game built with Three.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
